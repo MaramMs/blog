@@ -1,14 +1,13 @@
-import { Geist, Geist_Mono } from "next/font/google";
+// app/layout.js
+import { Tajawal } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import RootLayoutClient from "./RootLayoutClient";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const tajawal = Tajawal({
+  variable: "--font-tajawal",
+  subsets: ["arabic"],
+  weight: ['500', '700'],
 });
 
 export const metadata = {
@@ -18,11 +17,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html>
+      <body className={tajawal.variable}>
+        <LanguageProvider>
+          <RootLayoutClient>{children}</RootLayoutClient>
+        </LanguageProvider>
       </body>
     </html>
   );
