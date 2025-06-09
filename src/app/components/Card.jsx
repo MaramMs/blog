@@ -1,28 +1,117 @@
-import Image from 'next/image'
-import React from 'react'
-import carOne from '../../../public/assets/cars/car1.jpg'
-import { PiCalendarDots } from "react-icons/pi";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { Card, Button } from "react-bootstrap";
+import { IoCalendarOutline } from "react-icons/io5";
+import arrow from "../../../public/assets/arrow.png";
 
-
-const Card = () => {
+const CarCard = ({
+  image,
+  title,
+  padding,
+  date,
+  user,
+  description,
+  onButtonClick,
+  slug,
+  href,
+  prices,
+  question,
+  icon: Icon = null,
+  buttonText = null,
+}) => {
   return (
-    <div className='w-[454px] rounded-[8px] border border-[#D0D5DD] p-[24px] flex flex-col gap-[10px] bg-[#fff] shadow-[2px_4px_8px_0px_#00000029]'>
-        <Image src={carOne} alt='car' width={406} height={231} className='rounded-[24px]'/>
-        <h2 className='text-[#DD3B4A] font-bold text-[30px] '>شفروليه تاهو 2024 </h2>
-        <div className='flex gap-[4px] items-center'>
-            <PiCalendarDots className='text-[#B7B7B7] text-[24px]'/>
-            <p className='text-[#B7B7B7] text-[14px] font-medium'>
-                24 فبراير، 2025
-            </p>
+    <Card
+      className={`shadow-sm border border-secondary-subtle rounded-[8px]  ${padding} bg-white`}
+    >
+      {question && (
+        <>
+          <p className="flex justify-center items-center font-normal text-[30px] text-[#1B2532] mt-[16px] mb-0">
+            ودك
+            <span className="text-[#DD3B4A] text-[30px] font-bold">
+              {question}
+            </span>
+            ؟
+          </p>
 
-
+          <div className="relative w-full h-[231px]">
+            <div className="pt-[25px] w-full h-[210px]">
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[130px] bg-[#DD3B4A] rounded-t-full z-[1] overflow-hidden "></div>
+              <div className="absolute right-[135px]">
+                <Image src={arrow} width={49} height={57} />
+              </div>
+              <Image
+                src={image}
+                alt="card image"
+                width={299}
+                height={174}
+                className="absolute bottom-[22px] left-1/2 -translate-x-1/2 z-[2] w-[299px] h-[174px] object-cover"
+              />
+            </div>
+          </div>
+        </>
+      )}
+      {!question && (
+        <div
+          className={`w-full h-[231px] ${
+            padding ? "0px" : "p-[24px]"
+          }  mb-[32px]`}
+        >
+          <Image
+            src={image}
+            alt="card image"
+            width={406}
+            height={231}
+            className="w-full h-[231px] rounded-[24px] object-cover"
+          />
         </div>
-        <p className='text-[#707070] font-normal text-[18px] mb-[32px]'> توفر سيارات شفروليه تاهو – chevrolet  tahoe تجربة قيادة مختلفة مليئة بالمغامرات مع متعة قوة المحركات الامريكية الـv8......</p>
-        <button className='bg-[#DD3B4A] h-[48px] rounded-[8px] py-[12px] text-[#FFFFFF] font-bold text-[18px] flex justify-center items-center'>
-اقرأ المزيد
-        </button>
-    </div>
-  )
-}
+      )}
+      <div className={`pt-[${padding}] px-[24] card-body `}>
+        <h5 className="text-danger fw-bold fs-3">{title}</h5>
+        <div className="d-flex flex-col   text-muted gap-[8px] mb-[18px]">
+          <div className="d-flex gap-[4px] ">
+            {Icon && <Icon size={24} className="text-muted text-[#B7B7B7]" />}
+            <small className="text-[#A5A5A5] font-medium text-[14px]">
+              {user}
+            </small>
+          </div>
 
-export default Card
+          {date && (
+            <div className="d-flex  gap-[4px]">
+              <IoCalendarOutline className="text-[24px] text-[#B7B7B7]" />
+              <small className="text-[#B7B7B7] font-medium text-[14px]">
+                {date}
+              </small>
+            </div>
+          )}
+        </div>
+        {prices &&
+          prices.map(({ title, price }, index) => {
+            return (
+              <div key={index} className="flex flex-col gap-[4px] mt-[16px]">
+                <p className="text-[18px] text-[#1B2532]">
+                  {title}
+                  <span className="font-bold">{price} ر.س </span>
+                </p>
+              </div>
+            );
+          })}
+        <p className="text-[#1B2532] text-[18px] font-normal">{description}</p>
+        {buttonText && (
+          <Link href={href}>
+            <Button
+              variant="danger"
+              className="w-100 fw-bold py-2"
+              style={{ fontSize: "18px" }}
+              onClick={onButtonClick}
+            >
+              {buttonText}
+            </Button>
+          </Link>
+        )}
+      </div>
+    </Card>
+  );
+};
+
+export default CarCard;

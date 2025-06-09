@@ -15,7 +15,7 @@ export default function RootLayoutClient({ children }) {
       className="min-h-screen flex flex-col"
     >
       <NavBar />
-      <main className="flex-1 container mx-auto">{children}</main>
+      <main className="flex-1 ">{children}</main>
       <Footer />
     </div>
   );

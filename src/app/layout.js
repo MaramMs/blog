@@ -1,6 +1,7 @@
-// app/layout.js
 import { Tajawal } from "next/font/google";
 import "./globals.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { LanguageProvider } from "./contexts/LanguageContext";
 import RootLayoutClient from "./RootLayoutClient";
 
@@ -9,6 +10,7 @@ const tajawal = Tajawal({
   subsets: ["arabic"],
   weight: ['500', '700'],
 });
+
 
 export const metadata = {
   title: "Create Next App",

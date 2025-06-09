@@ -1,113 +1,97 @@
 "use client";
-import Card from "./components/Card";
+import CarCard from "./components/Card";
 import CategoryTabs from "./components/CategoryTab";
 import Hero from "./components/Hero";
-import { FiFilter } from "react-icons/fi";
-import YearRangeSlider from "./components/YearRangeSlider";
-import { useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
+import hero from "../../public/assets/hero.jpg";
+import carOne from "../../public/assets/cars/car1.jpg";
+import { Col, Row } from "react-bootstrap";
+import FilterModal from "./components/FilterModal";
+import Filter from "./components/Filter";
 
 export default function Home() {
-  const [openModel, setOpenModel] = useState(false);
-  const [openYear, setOpenYear] = useState(false);
+  const homeCardsItems = [
+    {
+      image: carOne,
+      title: "شفروليه تاهو 2024 ",
+      slug: "chevrolet-tahoe-2024",
+      date: "2023-10-01",
+      description:
+        "بحثت عن سيارة مستعملة لفترة طويلة، لكن من خلال كارزفد لقيت سيارة تويوتا بحالة ممتازة وسعر مناسب جدًا. التواصل مع البائع كان سهل وسريع. أنصح أي أحد يستخدم كارزفد!",
+    },
+    {
+      image: carOne,
+      title: "شفروليه تاهو 2024 ",
+      date: "2023-10-01",
+      slug: "chevrolet-tahoe-2024",
+      description:
+        "بحثت عن سيارة مستعملة لفترة طويلة، لكن من خلال كارزفد لقيت سيارة تويوتا بحالة ممتازة وسعر مناسب جدًا. التواصل مع البائع كان سهل وسريع. أنصح أي أحد يستخدم كارزفد!",
+    },
+    {
+      image: carOne,
+      title: "شفروليه تاهو 2024 ",
+      date: "2023-10-01",
+      slug: "chevrolet-tahoe-2024",
+      description:
+        "بحثت عن سيارة مستعملة لفترة طويلة، لكن من خلال كارزفد لقيت سيارة تويوتا بحالة ممتازة وسعر مناسب جدًا. التواصل مع البائع كان سهل وسريع. أنصح أي أحد يستخدم كارزفد!",
+    },
+    {
+      image: carOne,
+      title: "شفروليه تاهو 2024 ",
+      date: "2023-10-01",
+      slug: "chevrolet-tahoe-2024",
+      description:
+        "بحثت عن سيارة مستعملة لفترة طويلة، لكن من خلال كارزفد لقيت سيارة تويوتا بحالة ممتازة وسعر مناسب جدًا. التواصل مع البائع كان سهل وسريع. أنصح أي أحد يستخدم كارزفد!",
+    },
+  ];
   return (
-    <>
-      <Hero />
+    <div className="container mx-auto mt-[96px]">
+      <Hero
+        bg={hero}
+        title="مدونة كارزفــــــــــــــــــد نحو تجربة سيارات  أذكى و أكثر وعياً"
+        description="أخبار,مقالات,تحليلات حول عالم السيارات و خدمات كارزفد الذكية"
+        image="/assets/hero-car.png"
+        tags={["سيارات هجينة", "سيارات دفع رباعي", "سيارات كهربائية"]}
+      />
       <div className="flex flex-col gap-[40px] mb-[120px]">
-        <div className="flex">
-          <CategoryTabs />
-        </div>
-        <div className="flex flex-col md:flex-row gap-[19px]">
-          <div className="flex gap-[20px] flex-1">
-            <Card />
-            <Card />
-          </div>
+        <Row className="gap-2 align-items-start ">
+          <Row>
+            <Col md={10}>
+              <CategoryTabs />
+            </Col>
+            <Col md={2}>
+              <Filter />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={10} className="w-full bg-red h-[2px]"></Col>
+          </Row>
+        </Row>
 
-          <div className="bg-[#F8F8F8] rounded-[8px] shadow-[0px_1px_2px_0px_#0000000D] w-full px-[16px] py-[26px] relative z-0 flex flex-col">
-            {/* العنوان */}
-            <div className="flex gap-[4px] items-center mb-[24px]">
-              <FiFilter className="text-[#DD3B4A] text-[24px]" />
-              <span className="text-[#DD3B4A] text-[18px] font-medium">
-                فلترة النتائج
-              </span>
-            </div>
+        <Row className="g-4 align-items-start">
+          <Col md={10}>
+            <Row className="g-4">
+              {homeCardsItems.map((item, index) => (
+                <Col md={6} key={index}>
+                  <CarCard
+                    image={item.image}
+                    title={item.title}
+                    date={item.date}
+                    slug={item.slug}
+                    description={item.description}
+                    buttonText="اقرأ المزيد"
+                    padding="p-0"
+                    href={`/blog/${item.slug}`}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </Col>
 
-            <div className="relative z-10 mb-[24px]">
-              <div
-                className="flex justify-between items-center cursor-pointer"
-                onClick={() => {
-                  setOpenModel(!openModel);
-                  setOpenYear(false); // اقفل الثاني
-                }}
-              >
-                <p className="text-[#1B2532] font-medium text-[14px]">
-                  موديل السيارة
-                </p>
-                <IoIosArrowDown className="text-[#1B253280]" />
-              </div>
-
-              {openModel && (
-                <div className="mt-2 w-full rounded-[8px] bg-white p-[8px] flex flex-col gap-[19px] mx-auto">
-                  <label className="flex items-center gap-2 mb-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox text-red-600"
-                    />
-                    <span>سيارات فاخرة</span>
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox text-red-600"
-                    />
-                    <span>سيارات كهربائية</span>
-                  </label>
-
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox text-red-600"
-                    />
-                    <span>سيارات كهربائية</span>
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      className="form-checkbox text-red-600"
-                    />
-                    <span>سيارات كهربائية</span>
-                  </label>
-                </div>
-              )}
-            </div>
-
-            <div className="relative z-10 mb-[24px]">
-              <div
-                className="flex justify-between items-center cursor-pointer"
-                onClick={() => {
-                  setOpenYear(!openYear);
-                }}
-              >
-                <p className="text-[#1B2532] font-medium text-[14px]">
-                  سنة الصنع
-                </p>
-                <IoIosArrowDown className="text-[#1B253280]" />
-              </div>
-
-              {openYear && (
-                <div className="mt-4 z-20 relative ">
-                  <YearRangeSlider />
-                </div>
-              )}
-            </div>
-            <div className="mt-auto pt-4">
-              <button className="bg-[#1B2532] rounded-[8px] w-[169px] text-white text-[18px] font-bold py-2 m-auto flex justify-center items-center">
-                فلترة
-              </button>
-            </div>
-          </div>
-        </div>
+          <Col md={2}>
+            <FilterModal />
+          </Col>
+        </Row>
       </div>
-    </>
+    </div>
   );
 }

@@ -12,3 +12,28 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+/* swiper */
+.swiper-pagination {
+  bottom: 10px !important;
+  z-index: 10 !important;
+  position: absolute !important;
+    background-color: rgba(0, 0, 0, 0.1);
+  height: 20px;
+}
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #DD3B4A; 
+  z-index: 10;
+}
+
+.swiper-pagination-bullet {
+  background-color: #999;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #DD3B4A;
+}
+

@@ -14,8 +14,17 @@ import compFour from "../../../public/assets/company4.png";
 import compFive from "../../../public/assets/company5.png";
 import appStore from "../../../public/assets/app-store.png";
 import googleStore from "../../../public/assets/google-store.png";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+   const pathname = usePathname();
+
+  const links = [
+    { text: "الرئيسية", href: "/" },
+    { text: "خدمات كارزفد", href: "/services" },
+    { text: "قصص وتجارب المستخدمين", href: "/storyUsers" },
+    { text: "اتصل بنا", href: "/contact" },
+  ];
   return (
     <footer className="flex flex-col">
       <div className="bg-[#F8F8F8]">
@@ -32,34 +41,31 @@ const Footer = () => {
             />
           </div>
 
-          {/* Links with dots */}
-          <ul className="flex flex-col gap-4 text-center lg:text-right list-none">
-            {[
-              "الرئيسية",
-              "خدمات كارزفد",
-              "قصص وتجارب المستخدمين",
-              "اتصل بنا",
-            ].map((text, i) => (
-              <li
-                key={i}
-                className="
-                  relative pr-6 cursor-pointer
-                  before:absolute before:top-1/2 before:-translate-y-1/2
-                  before:h-2 before:w-2 before:rounded-full before:bg-black before:right-0
-                  hover:before:bg-[#DD3B4A]
-                "
-              >
-                <Link
-                  href="/"
-                  className="text-[#1B2532] text-[18px] block hover:text-[#DD3B4A]"
-                >
-                  {text}
-                </Link>
-              </li>
-            ))}
-          </ul>
+       <ul className="flex flex-col gap-4 text-center lg:text-right list-none">
+      {links.map((link, i) => (
+        <li
+          key={i}
+          className={`
+            relative pr-6 cursor-pointer
+            before:absolute before:top-1/2 before:-translate-y-1/2
+            before:h-2 before:w-2 before:rounded-full
+            before:right-0
+             !no-underline
+            ${pathname === link.href ? "before:bg-[#DD3B4A] text-[#DD3B4A]" : "before:bg-black"}
+          `}
+        >
+          <Link
+            href={link.href}
+            className={`text-[18px] block !no-underline ${
+              pathname === link.href ? "!text-[#DD3B4A]" : "!text-[#1B2532] "
+            } hover:text-[#DD3B4A]`}
+          >
+            {link.text}
+          </Link>
+        </li>
+      ))}
+    </ul>
 
-          {/* Companies + Text */}
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center">
               <div className="flex gap-[10.5px]">
@@ -109,7 +115,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social */}
           <div className="flex flex-col items-center lg:items-start gap-2">
             <p className="text-[16px] text-[#1B2532] font-medium">تابعنا على :</p>
             <div className="flex gap-4">
@@ -119,7 +124,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Stores */}
           <div className="flex flex-col items-center lg:items-start gap-2">
             <p className="text-[#1B2532] font-medium text-[16px]">حمل التطبيق من:</p>
             <div className="flex flex-col gap-2">
@@ -142,7 +146,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Copyright */}
       <div className="bg-[#1B2532] flex justify-center items-center gap-2 py-[28px] text-[#FFFFFF] text-[14px]">
         <MdOutlineCopyright />
         <p>جميع الحقوق محفوظة لدى كارزفد</p>
