@@ -44,7 +44,7 @@ export default function Home() {
     },
   ];
   return (
-    <div className="container mx-auto mt-[96px]">
+    <div className="container mx-auto mt-[50px] md:mt-[96px]">
       <Hero
         bg={hero}
         title="مدونة كارزفــــــــــــــــــد نحو تجربة سيارات  أذكى و أكثر وعياً"
@@ -55,16 +55,16 @@ export default function Home() {
       <div className="flex flex-col gap-[40px] mb-[120px]">
         <Row className="gap-2 align-items-start ">
           <Row>
-            <Col md={10}>
+            <Col sm={10} md={10}>
               <CategoryTabs />
             </Col>
-            <Col md={2}>
+            <Col sm={2} md={2}>
               <Filter />
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col md={10} className="w-full bg-red h-[2px]"></Col>
-          </Row>
+          </Row> */}
         </Row>
 
         <Row className="g-4 align-items-start">

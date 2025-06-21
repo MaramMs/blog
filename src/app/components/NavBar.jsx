@@ -24,7 +24,7 @@ const NavBar = () => {
 
         <ul className="hidden md:flex items-center gap-10">
           <li>
-            <Link href="/"className={`${pathname === '/' ? '!text-[#DD3B4A]' :'!text-[#1B2532]'}  !text-[18px] !no-underline`} >
+            <Link href="/" className={`${pathname === '/' ? '!text-[#DD3B4A]' :'!text-[#1B2532]'}  !text-[18px] !no-underline`} >
               الرئيسية
             </Link>
           </li>
@@ -64,19 +64,18 @@ const NavBar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-4 space-y-3 bg-white text-right">
-          <Link href="/" className="block text-[#1B2532]">
+        <div className="md:hidden flex flex-col px-6 pb-4 space-y-3 bg-white text-right">
+          <Link href="/" className={`${pathname === '/' ? '!text-[#DD3B4A]' :'!text-[#1B2532]'}  !text-[18px] !no-underline`}>
             الرئيسية
           </Link>
-          <Link href="/" className="block text-[#1B2532]">
+          <Link href="/services" className={`${pathname === '/services' ? '!text-[#DD3B4A]' :'!text-[#1B2532]'}  !text-[18px] !no-underline`}>
             خدمات كارزفد
           </Link>
-          <Link href="/" className="block text-[#1B2532]">
+          <Link href="/storyUsers" className={`${pathname === '/storyUsers' ? '!text-[#DD3B4A]' :'!text-[#1B2532]'}  !text-[18px] !no-underline`}>
             قصص وتجارب المستخدمين
           </Link>
-          <Link href="/" className="block text-[#1B2532]">
+          <Link href="/contact" className={`${pathname === '/contact' ? '!text-[#DD3B4A]' :'!text-[#1B2532]'}  !text-[18px] !no-underline`}>
             اتصل بنا
           </Link>
           <select

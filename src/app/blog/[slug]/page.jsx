@@ -1,26 +1,235 @@
+"use client";
 import { PiCarLight } from "react-icons/pi";
 import { TbColorSwatch } from "react-icons/tb";
 import { FaCarOn } from "react-icons/fa6";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { RiMagicLine } from "react-icons/ri";
 import SwiperCustom from "@/app/components/SwiperCustom";
-import carOne from '../../../../public/assets/cars/car1.jpg'
+import carOne from "../../../../public/assets/cars/car1.jpg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+const swiperData = [
+  {
+    id: 1,
+    image: "/assets/cars/adsCar.jpg",
+    title: "شيفروليه تاهو",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/1",
+    prices: [
+      { title: "سعر الكاش", price: "150,000" },
+      { title: "دفعة أولى", price: "30,000" },
+      { title: "قسط شهري", price: "2,500" },
+    ],
+    description: "سيارة عائلية قوية ومريحة للرحلات الطويلة.",
+    user: "شركة شيفروليه",
+    date: "2025-04-28",
+  },
+  {
+    id: 2,
+    image: "/assets/cars/adsCar.jpg",
+    title: "تويوتا لاندكروزر",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/2",
+    prices: [
+      { title: "سعر الكاش", price: "200,000" },
+      { title: "دفعة أولى", price: "40,000" },
+      { title: "قسط شهري", price: "3,200" },
+    ],
+    description: "أداء ممتاز في الطرق الوعرة مع فخامة داخلية.",
+    user: "شركة تويوتا",
+    date: "2025-04-28",
+  },
+  {
+    id: 3,
+    image: "/assets/cars/adsCar.jpg",
+    title: "نيسان باترول",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/3",
+    prices: [
+      { title: "سعر الكاش", price: "180,000" },
+      { title: "دفعة أولى", price: "36,000" },
+      { title: "قسط شهري", price: "2,900" },
+    ],
+    description: "سيارة دفع رباعي قوية وواسعة.",
+    user: "شركة نيسان",
+    date: "2025-04-28",
+  },
+  {
+    id: 4,
+    image: "/assets/cars/adsCar.jpg",
+    title: "كيا سبورتاج",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/4",
+    prices: [
+      { title: "سعر الكاش", price: "95,000" },
+      { title: "دفعة أولى", price: "19,000" },
+      { title: "قسط شهري", price: "1,600" },
+    ],
+    description: "سيارة اقتصادية وعملية للاستخدام اليومي.",
+    user: "شركة كيا",
+    date: "2025-04-28",
+  },
+  {
+    id: 5,
+    image: "/assets/cars/adsCar.jpg",
+    title: "هيونداي سنتافي",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/5",
+    prices: [
+      { title: "سعر الكاش", price: "110,000" },
+      { title: "دفعة أولى", price: "22,000" },
+      { title: "قسط شهري", price: "1,900" },
+    ],
+    description: "راحة وفخامة مع تقنيات حديثة.",
+    user: "شركة هيونداي",
+    date: "2025-04-28",
+  },
+  {
+    id: 6,
+    image: "/assets/cars/adsCar.jpg",
+    title: "فورد اكسبلورر",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/6",
+    prices: [
+      { title: "سعر الكاش", price: "130,000" },
+      { title: "دفعة أولى", price: "26,000" },
+      { title: "قسط شهري", price: "2,200" },
+    ],
+    description: "سيارة عائلية متعددة الاستخدامات.",
+    user: "شركة فورد",
+    date: "2025-04-28",
+  },
+  {
+    id: 7,
+    image: "/assets/cars/adsCar.jpg",
+    title: "مرسيدس GLC",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/7",
+    prices: [
+      { title: "سعر الكاش", price: "250,000" },
+      { title: "دفعة أولى", price: "50,000" },
+      { title: "قسط شهري", price: "4,000" },
+    ],
+    description: "فخامة ألمانية وتقنيات متطورة.",
+    user: "شركة مرسيدس",
+    date: "2025-04-28",
+  },
+  {
+    id: 8,
+    image: "/assets/cars/adsCar.jpg",
+    title: "بي ام دبليو X5",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/8",
+    prices: [
+      { title: "سعر الكاش", price: "270,000" },
+      { title: "دفعة أولى", price: "54,000" },
+      { title: "قسط شهري", price: "4,400" },
+    ],
+    description: "أداء رياضي مع رفاهية عالية.",
+    user: "شركة بي ام دبليو",
+    date: "2025-04-28",
+  },
+  {
+    id: 9,
+    image: "/assets/cars/adsCar.jpg",
+    title: "هونداي النترا",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/9",
+    prices: [
+      { title: "سعر الكاش", price: "75,000" },
+      { title: "دفعة أولى", price: "15,000" },
+      { title: "قسط شهري", price: "1,200" },
+    ],
+    description: "سيارة سيدان اقتصادية وعملية.",
+    user: "شركة هيونداي",
+    date: "2025-04-28",
+  },
+  {
+    id: 10,
+    image: "/assets/cars/adsCar.jpg",
+    title: "تويوتا كامري",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/10",
+    prices: [
+      { title: "سعر الكاش", price: "105,000" },
+      { title: "دفعة أولى", price: "21,000" },
+      { title: "قسط شهري", price: "1,800" },
+    ],
+    description: "سيارة متوسطة الحجم بموثوقية عالية.",
+    user: "شركة تويوتا",
+    date: "2025-04-28",
+  },
+  {
+    id: 11,
+    image: "/assets/cars/adsCar.jpg",
+    title: "جيب رانجلر",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/11",
+    prices: [
+      { title: "سعر الكاش", price: "210,000" },
+      { title: "دفعة أولى", price: "42,000" },
+      { title: "قسط شهري", price: "3,500" },
+    ],
+    description: "مغامرات لا حدود لها على الطرق الوعرة.",
+    user: "شركة جيب",
+    date: "2025-04-28",
+  },
+  {
+    id: 12,
+    image: "/assets/cars/adsCar.jpg",
+    title: "تويوتا يارس",
+    buttonText: "المزيد من التفاصيل",
+    href: "/adsCar/12",
+    prices: [
+      { title: "سعر الكاش", price: "60,000" },
+      { title: "دفعة أولى", price: "12,000" },
+      { title: "قسط شهري", price: "950" },
+    ],
+    description: "سيارة صغيرة واقتصادية للمدينة.",
+    user: "شركة تويوتا",
+    date: "2025-04-28",
+  },
+];
 
 export default async function BlogPostPage({ params }) {
-const prices =[
- {
-   title:'سعر السيارة',
-  price:'2222'
- },
-  {
-   title:'سعر القسط',
-  price:'888'
- }
-]
+
+
+  const images = [
+    "/assets/cars/car1.jpg",
+    "/assets/cars/car1.jpg",
+    "/assets/cars/car1.jpg",
+  ];
   return (
     <div className="container mx-auto  my-[120px]">
-
-      
+      <div className="mb-[120px] home-swiper">
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 1,
+            },
+          }}
+          pagination={{ clickable: true }}
+          className="w-full m-0 !pb-10"
+        >
+          {images.map((image) => (
+            <SwiperSlide key={image.id} className='h-[494px] py-[16px]'>
+              <img src={image}  className="h-[494px] w-full object-cover"/>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <div className="flex flex-col gap-[32px]">
         <div className="flex flex-col gap-[16px]">
           <div className="flex flex-col gap-[8px]">
@@ -48,7 +257,6 @@ const prices =[
             الاعتمادية، والفخامة في مركبة واحدة.
           </p>
         </div>
-
         <div className="flex flex-col gap-[16px]">
           <div className="flex gap-[8px] items-center">
             <PiCarLight className="text-[#DD3B4A] text-[24px]" />
@@ -241,19 +449,13 @@ const prices =[
             هل أعجبتك مواصفات السيارة اللي حكينا عنها؟ جمعنالك مجموعة من
             السيارات المشابهة بأسعار منافسة ومواصفات ممتازة, شوف أفضل العروض على
             السيارات الجديدة والمستعملة من خلال موقعنا الآن!
-
-            <span
-            className="text-[#DD3B4A]"
-            >
-              
-             تصفحها الآن وشوف أي
-            وحدة بتناسبك!
+            <span className="text-[#DD3B4A]">
+              تصفحها الآن وشوف أي وحدة بتناسبك!
             </span>
           </p>
         </div>
 
-
-      <SwiperCustom image={carOne} prices={prices}/>
+        <SwiperCustom swiperData={swiperData} />
       </div>
     </div>
   );

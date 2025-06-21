@@ -61,7 +61,7 @@ const StoryUsers = () => {
   return (
     <div className="container mx-auto mt-[30px] md:mt-[120px] md:pb-[119px]  pb-[100px]">
       <div className="flex flex-wrap justify-between items-center mb-[47px]">
-        <p className="text-[#DD3B4A] font-bold text-[40px]">
+        <p className="text-[#DD3B4A] font-bold text-[20px] md:text-[40px]">
           قصص و تجارب المستخدمين
         </p>
 

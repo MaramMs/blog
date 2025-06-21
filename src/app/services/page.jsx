@@ -10,7 +10,7 @@ const Services = () => {
   const classes = "line-height: 150%";
   const items = [
     {
-      href:'/adsCar',
+      href: "/adsCar",
       // slug: "car-financing",
       question: "تمولهـــــــا ",
       image: one,
@@ -20,7 +20,7 @@ const Services = () => {
         "تمويل مرن يناسب دخلك، مع أقل نسبة فائدة وإجراءات موافقة سريعة، لتقتني سيارتك بأسرع وقت وبأقل التكاليف......",
     },
     {
-            href:'/sellCar',
+      href: "/sellCar",
 
       // slug: "buy-and-sell",
       question: "تبيعها",
@@ -31,7 +31,7 @@ const Services = () => {
         "صبح العثور على أفضل العروض أسهل من أي وقت مضى. سواء كنت ترغب في بيع سيارتك بسعر عادل أو شراء....",
     },
     {
-            href:'/reservation',
+      href: "/reservation",
 
       // slug: "test-drive",
       question: "تجربها ",
@@ -43,7 +43,7 @@ const Services = () => {
     },
   ];
   return (
-    <div className="mb-[120px]">
+    <div className="mb-[100px] md:mb-[120px]">
       <Hero
         minHeight={537}
         classes={classes}
@@ -55,25 +55,23 @@ const Services = () => {
       />
 
       <div className="container mx-auto">
-        <Row>
+        <Row className="gap-4">
           {items.map((item, index) => {
-              console.log(item.href )
-
-            
-            return(
-            <Col key={index} md={4}>
-              <CarCard
-                question={item.question}
-                image={item.image}
-                title={item.title}
-                date={item.date}
-                padding="28px"
-                description={item.description}
-                buttonText="اقرأ المزيد"
-                href={item.href}
-              />
-            </Col>
-          )})}
+            return (
+              <Col key={index} xs={12} sm={6} md={4}>
+                <CarCard
+                  question={item.question}
+                  image={item.image}
+                  title={item.title}
+                  date={item.date}
+                  padding="28px"
+                  description={item.description}
+                  buttonText="اقرأ المزيد"
+                  href={item.href}
+                />
+              </Col>
+            );
+          })}
         </Row>
       </div>
     </div>

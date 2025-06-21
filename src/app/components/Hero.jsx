@@ -92,7 +92,7 @@ const Hero = ({
 }) => {
   return (
     <div
-      className="relative w-full bg-center bg-cover  mb-[155px] rounded-lg overflow-hidden flex"
+      className="relative w-full bg-center bg-cover mb-[100px]  md:mb-[155px] rounded-lg overflow-hidden flex"
       style={{
         backgroundImage: `url(${bg.src})`,
         minHeight,
@@ -105,7 +105,7 @@ const Hero = ({
         }}
       />
 
-      <div className={`${width} relative z-20 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 md:px-10 py-6 gap-6  mx-auto`}>
+      <div className={`${width} relative z-20 flex flex-col lg:flex-row items-center justify-center md:justify-between px-4 sm:px-6 md:px-10 py-6 gap-6  mx-auto`}>
         <div className="text-center lg:text-right flex flex-col gap-[16px] max-w-full lg:max-w-[45%]">
           <h1 className="classes text-white  font-bold text-[20px] sm:text-[26px] md:text-[32px] lg:text-[50px] leading-[.3]">
             {title}
@@ -130,7 +130,7 @@ const Hero = ({
                 width={240}
                 height={160}
                 alt="hero car"
-                className="h-auto object-contain mx-auto"
+                className="h-auto object-contain mx-auto hidden md:block"
               />
             </div>
 
