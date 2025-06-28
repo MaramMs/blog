@@ -11,7 +11,6 @@ const Services = () => {
   const items = [
     {
       href: "/adsCar",
-      // slug: "car-financing",
       question: "تمولهـــــــا ",
       image: one,
       title: "تمويل السيارات",
@@ -21,8 +20,6 @@ const Services = () => {
     },
     {
       href: "/sellCar",
-
-      // slug: "buy-and-sell",
       question: "تبيعها",
       image: two,
       title: "بيع وشراء السيارات",
@@ -32,8 +29,6 @@ const Services = () => {
     },
     {
       href: "/reservation",
-
-      // slug: "test-drive",
       question: "تجربها ",
       image: two,
       title: " حجز تجربة قيادة",
