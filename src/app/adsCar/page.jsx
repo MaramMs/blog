@@ -120,10 +120,10 @@ const AdsCar = () => {
   return (
     <div className="container mx-auto">
       <div
-        className="w-full relative h-[494px] mt-[85px] mb-[157px] bg-cover bg-center"
+        className="w-full relative h-[494px] mt-[85px] mb-[157px] bg-cover"
         style={{
           backgroundImage: "url('/assets/cars/adsCar.jpg')",
-        }}
+          backgroundPosition: "center 80%",       }}
       >
         <div className="absolute inset-0 bg-[#1B2532] opacity-[50%] z-20" />
       </div>

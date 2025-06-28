@@ -55,7 +55,7 @@ const Services = () => {
       />
 
       <div className="container mx-auto">
-        <Row className="gap-4">
+        <Row>
           {items.map((item, index) => {
             return (
               <Col key={index} xs={12} sm={6} md={4}>

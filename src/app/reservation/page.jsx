@@ -302,7 +302,7 @@ const Reservation = () => {
             السوق.
           </p>
         </div>
-      <SwiperCustom swiperData={swiperData} />
+        <SwiperCustom swiperData={swiperData} />
       </div>
     </div>
   );

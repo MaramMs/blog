@@ -5,7 +5,6 @@ import { FaCarOn } from "react-icons/fa6";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { RiMagicLine } from "react-icons/ri";
 import SwiperCustom from "@/app/components/SwiperCustom";
-import carOne from "../../../../public/assets/cars/car1.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
@@ -19,9 +18,8 @@ const swiperData = [
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/1",
     prices: [
-      { title: "سعر الكاش", price: "150,000" },
-      { title: "دفعة أولى", price: "30,000" },
-      { title: "قسط شهري", price: "2,500" },
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة عائلية قوية ومريحة للرحلات الطويلة.",
     user: "شركة شيفروليه",
@@ -33,10 +31,9 @@ const swiperData = [
     title: "تويوتا لاندكروزر",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/2",
-    prices: [
-      { title: "سعر الكاش", price: "200,000" },
-      { title: "دفعة أولى", price: "40,000" },
-      { title: "قسط شهري", price: "3,200" },
+     prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "أداء ممتاز في الطرق الوعرة مع فخامة داخلية.",
     user: "شركة تويوتا",
@@ -48,10 +45,9 @@ const swiperData = [
     title: "نيسان باترول",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/3",
-    prices: [
-      { title: "سعر الكاش", price: "180,000" },
-      { title: "دفعة أولى", price: "36,000" },
-      { title: "قسط شهري", price: "2,900" },
+   prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة دفع رباعي قوية وواسعة.",
     user: "شركة نيسان",
@@ -63,10 +59,9 @@ const swiperData = [
     title: "كيا سبورتاج",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/4",
-    prices: [
-      { title: "سعر الكاش", price: "95,000" },
-      { title: "دفعة أولى", price: "19,000" },
-      { title: "قسط شهري", price: "1,600" },
+   prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة اقتصادية وعملية للاستخدام اليومي.",
     user: "شركة كيا",
@@ -78,10 +73,9 @@ const swiperData = [
     title: "هيونداي سنتافي",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/5",
-    prices: [
-      { title: "سعر الكاش", price: "110,000" },
-      { title: "دفعة أولى", price: "22,000" },
-      { title: "قسط شهري", price: "1,900" },
+   prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "راحة وفخامة مع تقنيات حديثة.",
     user: "شركة هيونداي",
@@ -93,10 +87,9 @@ const swiperData = [
     title: "فورد اكسبلورر",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/6",
-    prices: [
-      { title: "سعر الكاش", price: "130,000" },
-      { title: "دفعة أولى", price: "26,000" },
-      { title: "قسط شهري", price: "2,200" },
+   prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة عائلية متعددة الاستخدامات.",
     user: "شركة فورد",
@@ -108,10 +101,9 @@ const swiperData = [
     title: "مرسيدس GLC",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/7",
-    prices: [
-      { title: "سعر الكاش", price: "250,000" },
-      { title: "دفعة أولى", price: "50,000" },
-      { title: "قسط شهري", price: "4,000" },
+     prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "فخامة ألمانية وتقنيات متطورة.",
     user: "شركة مرسيدس",
@@ -124,9 +116,8 @@ const swiperData = [
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/8",
     prices: [
-      { title: "سعر الكاش", price: "270,000" },
-      { title: "دفعة أولى", price: "54,000" },
-      { title: "قسط شهري", price: "4,400" },
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "أداء رياضي مع رفاهية عالية.",
     user: "شركة بي ام دبليو",
@@ -138,10 +129,9 @@ const swiperData = [
     title: "هونداي النترا",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/9",
-    prices: [
-      { title: "سعر الكاش", price: "75,000" },
-      { title: "دفعة أولى", price: "15,000" },
-      { title: "قسط شهري", price: "1,200" },
+   prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة سيدان اقتصادية وعملية.",
     user: "شركة هيونداي",
@@ -154,9 +144,8 @@ const swiperData = [
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/10",
     prices: [
-      { title: "سعر الكاش", price: "105,000" },
-      { title: "دفعة أولى", price: "21,000" },
-      { title: "قسط شهري", price: "1,800" },
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة متوسطة الحجم بموثوقية عالية.",
     user: "شركة تويوتا",
@@ -169,9 +158,8 @@ const swiperData = [
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/11",
     prices: [
-      { title: "سعر الكاش", price: "210,000" },
-      { title: "دفعة أولى", price: "42,000" },
-      { title: "قسط شهري", price: "3,500" },
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "مغامرات لا حدود لها على الطرق الوعرة.",
     user: "شركة جيب",
@@ -183,10 +171,9 @@ const swiperData = [
     title: "تويوتا يارس",
     buttonText: "المزيد من التفاصيل",
     href: "/adsCar/12",
-    prices: [
-      { title: "سعر الكاش", price: "60,000" },
-      { title: "دفعة أولى", price: "12,000" },
-      { title: "قسط شهري", price: "950" },
+     prices: [
+      { title: "سعر السيارة ", price: "150,000" },
+      { title: "سعر القسط", price: "30,000" },
     ],
     description: "سيارة صغيرة واقتصادية للمدينة.",
     user: "شركة تويوتا",
@@ -195,8 +182,6 @@ const swiperData = [
 ];
 
 export default async function BlogPostPage({ params }) {
-
-
   const images = [
     "/assets/cars/car1.jpg",
     "/assets/cars/car1.jpg",
