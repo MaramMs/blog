@@ -1,42 +1,56 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import serCard from "../../../public/assets/cars/servCar.jpg";
 import one from "../../../public/assets/cars/one.png";
 import two from "../../../public/assets/cars/two.png";
 import { Col, Row } from "react-bootstrap";
 import CarCard from "../components/Card";
+import { getServices } from "../../sanity/lib/getServices";
 
 const Services = () => {
+   const [servicesData, setServicesData] = useState([]);
+  
+    console.log(servicesData,'servicesData')
+  
+    useEffect(() => {
+      const fetchServices = async () => {
+        const data = await getServices();
+        setServicesData(data);
+      };
+  
+      fetchServices();
+    }, []);
   const classes = "line-height: 150%";
-  const items = [
-    {
-      href: "/adsCar",
-      question: "تمولهـــــــا ",
-      image: one,
-      title: "تمويل السيارات",
-      date: "24 فبراير، 2025",
-      description:
-        "تمويل مرن يناسب دخلك، مع أقل نسبة فائدة وإجراءات موافقة سريعة، لتقتني سيارتك بأسرع وقت وبأقل التكاليف......",
-    },
-    {
-      href: "/sellCar",
-      question: "تبيعها",
-      image: two,
-      title: "بيع وشراء السيارات",
-      date: "24 فبراير، 2025",
-      description:
-        "صبح العثور على أفضل العروض أسهل من أي وقت مضى. سواء كنت ترغب في بيع سيارتك بسعر عادل أو شراء....",
-    },
-    {
-      href: "/reservation",
-      question: "تجربها ",
-      image: two,
-      title: " حجز تجربة قيادة",
-      date: "24 فبراير، 2025",
-      description:
-        "قبل أن تتخذ قرار شراء سيارتك الجديدة، تمنحك كارزفد فرصة مميزة لحجز تجربة قيادة بكل سهولة. جرب السيارة بنفسك، وتأكد من راحتها وأدائها......",
-    },
-  ];
+  // const items = [
+  //   {
+  //     href: "/adsCar",
+  //     question: "تمولهـــــــا ",
+  //     image: one,
+  //     title: "تمويل السيارات",
+  //     date: "24 فبراير، 2025",
+  //     description:
+  //       "تمويل مرن يناسب دخلك، مع أقل نسبة فائدة وإجراءات موافقة سريعة، لتقتني سيارتك بأسرع وقت وبأقل التكاليف......",
+  //   },
+  //   {
+  //     href: "/sellCar",
+  //     question: "تبيعها",
+  //     image: two,
+  //     title: "بيع وشراء السيارات",
+  //     date: "24 فبراير، 2025",
+  //     description:
+  //       "صبح العثور على أفضل العروض أسهل من أي وقت مضى. سواء كنت ترغب في بيع سيارتك بسعر عادل أو شراء....",
+  //   },
+  //   {
+  //     href: "/reservation",
+  //     question: "تجربها ",
+  //     image: two,
+  //     title: " حجز تجربة قيادة",
+  //     date: "24 فبراير، 2025",
+  //     description:
+  //       "قبل أن تتخذ قرار شراء سيارتك الجديدة، تمنحك كارزفد فرصة مميزة لحجز تجربة قيادة بكل سهولة. جرب السيارة بنفسك، وتأكد من راحتها وأدائها......",
+  //   },
+  // ];
   return (
     <div className="mb-[100px] md:mb-[120px]">
       <Hero
@@ -51,18 +65,19 @@ const Services = () => {
 
       <div className="container mx-auto">
         <Row>
-          {items.map((item, index) => {
+          {servicesData.map((item, index) => {
+            console.log(item?.mainImage?.asset?.url, "item");
             return (
               <Col key={index} xs={12} sm={6} md={4}>
                 <CarCard
                   question={item.question}
-                  image={item.image}
-                  title={item.title}
-                  date={item.date}
+                  image={item?.mainImage?.asset?.url}
+                  title={item?.title}
+                  date={item?.publishedAt}
                   padding="28px"
-                  description={item.description}
+                  description={item?.description}
                   buttonText="اقرأ المزيد"
-                  href={item.href}
+                  href={`/services/${item?.slug?.current}`}
                 />
               </Col>
             );

@@ -1,195 +1,165 @@
-"use client";
-import { PiCarLight } from "react-icons/pi";
-import { TbColorSwatch } from "react-icons/tb";
-import { FaCarOn } from "react-icons/fa6";
-import { AiOutlineDollarCircle } from "react-icons/ai";
-import { RiMagicLine } from "react-icons/ri";
-import SwiperCustom from "@/app/components/SwiperCustom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+// "use client";
+// import { PiCarLight } from "react-icons/pi";
+// import { TbColorSwatch } from "react-icons/tb";
+// import { FaCarOn } from "react-icons/fa6";
+// import { AiOutlineDollarCircle } from "react-icons/ai";
+// import { RiMagicLine } from "react-icons/ri";
+import SwiperCustom from "../../components/SwiperCustom";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Pagination } from "swiper/modules";
+import { client } from "../../../sanity/lib/client";
 
-import "swiper/css";
-import "swiper/css/pagination";
-const swiperData = [
-  {
-    id: 1,
-    image: "/assets/cars/adsCar.jpg",
-    title: "شيفروليه تاهو",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/1",
-    prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة عائلية قوية ومريحة للرحلات الطويلة.",
-    user: "شركة شيفروليه",
-    date: "2025-04-28",
+// import "swiper/css";
+// import "swiper/css/pagination";
+
+import { PortableText } from "@portabletext/react";
+
+const components = {
+  block: {
+    h1: ({ children }) => (
+      <h1 className="text-4xl font-bold mb-4">{children}</h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="text-2xl font-semibold mb-3">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="text-[#1B2532] font-bold text-[30px] underline">
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4 className="!text-[#DD3B4A] font-bold text-[18px]">{children}</h4>
+    ),
+    normal: ({ children }) => (
+      <p className="text-base text-gray-700 mb-4">{children}</p>
+    ),
   },
-  {
-    id: 2,
-    image: "/assets/cars/adsCar.jpg",
-    title: "تويوتا لاندكروزر",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/2",
-     prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "أداء ممتاز في الطرق الوعرة مع فخامة داخلية.",
-    user: "شركة تويوتا",
-    date: "2025-04-28",
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc pl-6 flex flex-col gap-[8px]">{children}</ul>
+    ),
   },
-  {
-    id: 3,
-    image: "/assets/cars/adsCar.jpg",
-    title: "نيسان باترول",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/3",
-   prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة دفع رباعي قوية وواسعة.",
-    user: "شركة نيسان",
-    date: "2025-04-28",
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="text-[18px] text-[#1B2532] font-normal flex gap-[8px] items-center">
+        <span className="w-[8px] h-[8px] mt-2 bg-[#1B2532] rounded-full block"></span>
+        <span>{children}</span>
+      </li>
+    ),
   },
-  {
-    id: 4,
-    image: "/assets/cars/adsCar.jpg",
-    title: "كيا سبورتاج",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/4",
-   prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة اقتصادية وعملية للاستخدام اليومي.",
-    user: "شركة كيا",
-    date: "2025-04-28",
+  marks: {
+    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    em: ({ children }) => <em className="italic">{children}</em>,
+    link: ({ value, children }) => (
+      <a
+        href={value.href}
+        className="text-blue-600 underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    ),
   },
-  {
-    id: 5,
-    image: "/assets/cars/adsCar.jpg",
-    title: "هيونداي سنتافي",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/5",
-   prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "راحة وفخامة مع تقنيات حديثة.",
-    user: "شركة هيونداي",
-    date: "2025-04-28",
+  types: {
+    image: ({ value }) => (
+      <img
+        src={value.asset.url}
+        alt={value.alt || "صورة"}
+        className="rounded-md my-4"
+      />
+    ),
   },
-  {
-    id: 6,
-    image: "/assets/cars/adsCar.jpg",
-    title: "فورد اكسبلورر",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/6",
-   prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة عائلية متعددة الاستخدامات.",
-    user: "شركة فورد",
-    date: "2025-04-28",
-  },
-  {
-    id: 7,
-    image: "/assets/cars/adsCar.jpg",
-    title: "مرسيدس GLC",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/7",
-     prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "فخامة ألمانية وتقنيات متطورة.",
-    user: "شركة مرسيدس",
-    date: "2025-04-28",
-  },
-  {
-    id: 8,
-    image: "/assets/cars/adsCar.jpg",
-    title: "بي ام دبليو X5",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/8",
-    prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "أداء رياضي مع رفاهية عالية.",
-    user: "شركة بي ام دبليو",
-    date: "2025-04-28",
-  },
-  {
-    id: 9,
-    image: "/assets/cars/adsCar.jpg",
-    title: "هونداي النترا",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/9",
-   prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة سيدان اقتصادية وعملية.",
-    user: "شركة هيونداي",
-    date: "2025-04-28",
-  },
-  {
-    id: 10,
-    image: "/assets/cars/adsCar.jpg",
-    title: "تويوتا كامري",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/10",
-    prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة متوسطة الحجم بموثوقية عالية.",
-    user: "شركة تويوتا",
-    date: "2025-04-28",
-  },
-  {
-    id: 11,
-    image: "/assets/cars/adsCar.jpg",
-    title: "جيب رانجلر",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/11",
-    prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "مغامرات لا حدود لها على الطرق الوعرة.",
-    user: "شركة جيب",
-    date: "2025-04-28",
-  },
-  {
-    id: 12,
-    image: "/assets/cars/adsCar.jpg",
-    title: "تويوتا يارس",
-    buttonText: "المزيد من التفاصيل",
-    href: "/adsCar/12",
-     prices: [
-      { title: "سعر السيارة ", price: "150,000" },
-      { title: "سعر القسط", price: "30,000" },
-    ],
-    description: "سيارة صغيرة واقتصادية للمدينة.",
-    user: "شركة تويوتا",
-    date: "2025-04-28",
-  },
-];
+};
+
+export function PortableTextComponent({ value }) {
+  return <PortableText value={value} components={components} />;
+}
+
+export async function generateStaticParams() {
+  const query = `*[_type == "post"]{ "slug": slug.current }`;
+  const slugs = await client.fetch(query);
+  return slugs.map((slug) => ({ slug: slug.slug }));
+}
 
 export default async function BlogPostPage({ params }) {
-  const images = [
-    "/assets/cars/car1.jpg",
-    "/assets/cars/car1.jpg",
-    "/assets/cars/car1.jpg",
-  ];
+  console.log(params, "params from page");
+  const { slug } = params;
+  const query = `
+    *[_type == "post" && slug.current == $slug][0]{
+      title,
+      publishedAt,
+      mainImage {
+        asset->{
+          url
+        }
+      },
+    sliderItems[] {
+  title,
+  description,
+  buttonText,
+  href,
+  image {
+    asset->{
+      url
+    },
+    alt
+  }
+},
+
+      body
+    }
+  `;
+  const post = await client.fetch(query, { slug });
+  const queryLatest = `
+  *[_type == "post"] | order(publishedAt desc)[0...3] {
+    title,
+    slug,
+    price,
+    installment,
+    buttonText,
+    mainImage {
+      asset->{
+        url
+      }
+    }
+  }
+`;
+
+const latestPosts = await client.fetch(queryLatest);
+
+
+  console.log(post, "post from details");
+
+  console.log(latestPosts, "latestPosts");
+
+  const formattedDate = new Date(post.publishedAt)?.toISOString()?.split("T")[0];
   return (
     <div className="container mx-auto  my-[120px]">
-      <div className="mb-[120px] home-swiper">
+      <div className="flex flex-col gap-[32px]">
+        <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[8px]">
+            <span className="text-[#B7B7B7] font-medium text-[16px]">
+              الرئيسية / المقال
+            </span>
+            <h1 className="text-[50px] font-bold !text-[#DD3B4A]">
+              {post.title}
+            </h1>
+          </div>
+          <span className="text-[#B7B7B7] font-normal text-[18px] underline ">
+            {formattedDate}
+          </span>
+
+          <PortableTextComponent value={post.body} />
+          <SwiperCustom swiperData={latestPosts} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+{
+  /* <div className="mb-[120px] home-swiper">
         <Swiper
           modules={[Pagination]}
           spaceBetween={20}
@@ -214,21 +184,11 @@ export default async function BlogPostPage({ params }) {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-      <div className="flex flex-col gap-[32px]">
-        <div className="flex flex-col gap-[16px]">
-          <div className="flex flex-col gap-[8px]">
-            <span className="text-[#B7B7B7] font-medium text-[16px]">
-              الرئيسية / المقال
-            </span>
-            <h1 className="text-[50px] font-bold text-[#DD3B4A]">
-              شيفروليه تاو 2024
-            </h1>
-          </div>
-          <span className="text-[#B7B7B7] font-normal text-[18px] underline ">
-            أبريل 28, 2025
-          </span>
-          <p className="text-[18px] text-[#1B2532] font-normal leading-[150%]">
+      </div> */
+}
+
+{
+  /* <p className="text-[18px] text-[#1B2532] font-normal leading-[150%]">
             شيفروليه تاهو 2024 هي سيارة دفع رباعي كبيرة الحجم، تجمع بين الأداء
             القوي، الراحة، والتكنولوجيا المتقدمة، مما يجعلها من أبرز الخيارات في
             فئتها. تأتي هذه السيارة لتلبي تطلعات العائلات والمسافرين الذين
@@ -438,10 +398,225 @@ export default async function BlogPostPage({ params }) {
               تصفحها الآن وشوف أي وحدة بتناسبك!
             </span>
           </p>
-        </div>
-
-        <SwiperCustom swiperData={swiperData} />
-      </div>
-    </div>
-  );
+        </div> */
 }
+
+// const swiperData = [
+//   {
+//     id: 1,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "شيفروليه تاهو",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/1",
+//     prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة عائلية قوية ومريحة للرحلات الطويلة.",
+//     user: "شركة شيفروليه",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 2,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "تويوتا لاندكروزر",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/2",
+//      prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "أداء ممتاز في الطرق الوعرة مع فخامة داخلية.",
+//     user: "شركة تويوتا",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 3,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "نيسان باترول",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/3",
+//    prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة دفع رباعي قوية وواسعة.",
+//     user: "شركة نيسان",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 4,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "كيا سبورتاج",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/4",
+//    prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة اقتصادية وعملية للاستخدام اليومي.",
+//     user: "شركة كيا",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 5,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "هيونداي سنتافي",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/5",
+//    prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "راحة وفخامة مع تقنيات حديثة.",
+//     user: "شركة هيونداي",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 6,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "فورد اكسبلورر",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/6",
+//    prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة عائلية متعددة الاستخدامات.",
+//     user: "شركة فورد",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 7,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "مرسيدس GLC",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/7",
+//      prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "فخامة ألمانية وتقنيات متطورة.",
+//     user: "شركة مرسيدس",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 8,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "بي ام دبليو X5",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/8",
+//     prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "أداء رياضي مع رفاهية عالية.",
+//     user: "شركة بي ام دبليو",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 9,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "هونداي النترا",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/9",
+//    prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة سيدان اقتصادية وعملية.",
+//     user: "شركة هيونداي",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 10,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "تويوتا كامري",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/10",
+//     prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة متوسطة الحجم بموثوقية عالية.",
+//     user: "شركة تويوتا",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 11,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "جيب رانجلر",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/11",
+//     prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "مغامرات لا حدود لها على الطرق الوعرة.",
+//     user: "شركة جيب",
+//     date: "2025-04-28",
+//   },
+//   {
+//     id: 12,
+//     image: "/assets/cars/adsCar.jpg",
+//     title: "تويوتا يارس",
+//     buttonText: "المزيد من التفاصيل",
+//     href: "/adsCar/12",
+//      prices: [
+//       { title: "سعر السيارة ", price: "150,000" },
+//       { title: "سعر القسط", price: "30,000" },
+//     ],
+//     description: "سيارة صغيرة واقتصادية للمدينة.",
+//     user: "شركة تويوتا",
+//     date: "2025-04-28",
+//   },
+// ];
+
+// export default async function BlogDetails({ params }) {
+//   console.log(params , 'params')
+//   const { slug } = params;
+
+//   const query = `
+//     *[_type == "post" && slug.current == $slug][0]{
+//       title,
+//       publishedAt,
+//       mainImage {
+//         asset->{
+//           url
+//         }
+//       },
+//       body
+//     }
+//   `;
+//   const post = await client.fetch(query, { slug });
+
+//   const formattedDate = new Date(post.publishedAt).toISOString().split("T")[0];
+
+//   return (
+//     <div className="container py-5">
+//       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
+//       <p className="text-muted mb-2">{formattedDate}</p>
+//       {post.mainImage?.asset?.url && (
+//         <img
+//           src={post.mainImage.asset.url}
+//           alt={post.title}
+//           width={800}
+//           height={500}
+//           className="rounded mb-4"
+//         />
+//       )}
+//       <div className="prose max-w-none">
+//         {post.body.map((block, index) => {
+//           if (block._type === "block") {
+//             return (
+//               <p key={index}>
+//                 {block.children.map((child) => child.text).join("")}
+//               </p>
+//             );
+//           }
+//           return null;
+//         })}
+//       </div>
+//     </div>
+//   );
+// }

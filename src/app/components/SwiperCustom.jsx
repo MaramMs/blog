@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
@@ -10,6 +9,7 @@ import "swiper/css/pagination";
 import CarCard from "./Card";
 
 const SwiperCustom = ({swiperData }) => {
+  console.log(swiperData,'swiperData')
   return (
     <div className="relative w-full">
       <Swiper
@@ -38,11 +38,12 @@ const SwiperCustom = ({swiperData }) => {
           <SwiperSlide key={car.id}>
             <div className="pb-[80px]">
               <CarCard
-                image={car.image}
+                image={car?.mainImage?.asset?.url}
                 title={car.title}
                 buttonText={car.buttonText}
-                prices={car.prices}
-                href={car.href}
+                price={car.price}
+                installment={car.installment}
+                href={car?.slug?.current}
               />
             </div>
           </SwiperSlide>

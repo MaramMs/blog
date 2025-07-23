@@ -11,15 +11,26 @@ const CarCard = ({
   padding,
   date,
   user,
+  installment,
   description,
   onButtonClick,
   slug,
   href,
-  prices,
+  price,
   question,
   icon: Icon = null,
   buttonText = null,
 }) => {
+  console.log(image, "image date");
+
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString("en-EG", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "تاريخ غير متوفر";
+
   return (
     <Card
       className={`shadow-sm border border-secondary-subtle rounded-[8px]  ${padding} bg-white`}
@@ -57,7 +68,7 @@ const CarCard = ({
             padding ? "0px" : "p-[24px]"
           }  mb-[32px]`}
         >
-          <Image
+          <img
             src={image}
             alt="card image"
             width={406}
@@ -76,26 +87,28 @@ const CarCard = ({
             </small>
           </div>
 
-          {date && (
+          {formattedDate && (
             <div className="d-flex  gap-[4px]">
               <IoCalendarOutline className="text-[24px] text-[#B7B7B7]" />
-              <small className="text-[#B7B7B7] font-medium text-[14px]">
-                {date}
-              </small>
+              {formattedDate && (
+                <small className="text-[#B7B7B7] font-medium text-[14px]">
+                  {formattedDate}
+                </small>
+              )}
             </div>
           )}
         </div>
-        {prices &&
-          prices.map(({ title, price }, index) => {
-            return (
-              <div key={index} className="flex flex-col gap-[4px] mt-[16px]">
-                <p className="text-[18px] text-[#1B2532]">
-                  {title}
-                  <span className="font-bold">{price} ر.س </span>
-                </p>
-              </div>
-            );
-          })}
+        {price && (
+          <div className="flex flex-col gap-[4px] mt-[16px]">
+            <p className="text-[18px] text-[#1B2532]">
+              سعر السيارة:
+              <span className="font-bold">{price} ر.س </span>
+            </p>
+            <p className="text-[18px] text-[#1B2532]">
+              سعر القسط :<span className="font-bold">{installment} ر.س </span>
+            </p>
+          </div>
+        )}
         <p className="text-[#1B2532] text-[18px] font-normal">{description}</p>
         {buttonText && (
           <Link href={href}>
