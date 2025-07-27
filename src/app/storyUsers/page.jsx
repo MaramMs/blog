@@ -96,12 +96,12 @@
 
 'use client'; 
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { CiUser } from "react-icons/ci";
+import { getClients } from "../../studio/sanity/lib/getClients";
 import CarCard from "../components/Card";
 import Filter from "../components/Filter";
-import { getClients } from "../../sanity/lib/getClients"; 
 
 const StoryUsers = () => {
   const [clients, setClients] = useState([]);

@@ -14,9 +14,9 @@
 
 
 'use client'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { getPosts } from '../studio/sanity/lib/getPosts';
 import PostsWithClientWrapper from "./components/PostWithClientWrapper";
-import { getPosts } from '../sanity/lib/getPosts';
 
 
 const PostsList = () => {

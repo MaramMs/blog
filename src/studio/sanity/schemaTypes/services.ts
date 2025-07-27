@@ -52,7 +52,6 @@ export const services = defineType({
       name: "body",
       title: "Content",
       type: "blockContent",
-      // of: [{ type: "block" }],
     },
     {
       name: "prices",

@@ -1,12 +1,10 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import Hero from "../components/Hero";
-import serCard from "../../../public/assets/cars/servCar.jpg";
-import one from "../../../public/assets/cars/one.png";
-import two from "../../../public/assets/cars/two.png";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import serCard from "../../../public/assets/cars/servCar.jpg";
+import { getServices } from "../../studio/sanity/lib/getServices";
 import CarCard from "../components/Card";
-import { getServices } from "../../sanity/lib/getServices";
+import Hero from "../components/Hero";
 
 const Services = () => {
    const [servicesData, setServicesData] = useState([]);

@@ -1,18 +1,14 @@
-import { defineType, defineField } from "sanity";
-import { DocumentTextIcon } from "@sanity/icons";
-
-export const postType = defineType({
+export const postType = {
   name: "post",
   title: "Post",
   type: "document",
-  icon: DocumentTextIcon,
   fields: [
-    defineField({
+    {
       name: "title",
       type: "string",
       title: "Title",
-    }),
-    defineField({
+    },
+    {
       name: "slug",
       type: "slug",
       title: "Slug",
@@ -21,73 +17,65 @@ export const postType = defineType({
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
+    },
+    {
       name: "author",
       type: "reference",
       title: "Author",
       to: [{ type: "author" }],
-    }),
-    defineField({
+    },
+    {
       name: "mainImage",
       type: "image",
       title: "Main Image",
       options: { hotspot: true },
-      fields: [
-        defineField({
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        }),
-      ],
-    }),
-    defineField({
+      // احذف الـ fields هنا إذا النسخة قديمة ولا تدعمها
+      // لو حبيت تضيف alt ممكن تعمله حقل string منفصل خارج هذا الحقل
+    },
+    {
       name: "price",
       type: "number",
       title: "سعر السيارة",
-    }),
-    defineField({
+    },
+    {
       name: "installment",
       type: "number",
       title: "سعر القسط",
-    }),
-
-    defineField({
+    },
+    {
       name: "buttonText",
       type: "string",
-      title: "ButtonText",
-    }),
-
-    defineField({
+      title: "Button Text",
+    },
+    {
       name: "category",
+      type: "reference",
       title: "Category",
-      type: "reference",
       to: [{ type: "category" }],
-    }),
-    defineField({
+    },
+    {
       name: "carModel",
+      type: "reference",
       title: "موديل السيارة",
-      type: "reference",
       to: [{ type: "carModel" }],
-    }),
-    defineField({
+    },
+    {
       name: "carYear",
-      title: "سنة الصنع",
       type: "reference",
+      title: "سنة الصنع",
       to: [{ type: "carYear" }],
-    }),
-
-    defineField({
+    },
+    {
       name: "publishedAt",
       type: "datetime",
       title: "Published At",
       initialValue: () => new Date().toISOString(),
-    }),
-    defineField({
+    },
+    {
       name: "body",
       type: "blockContent",
       title: "Body",
-    }),
+    },
   ],
   preview: {
     select: {
@@ -95,9 +83,12 @@ export const postType = defineType({
       author: "author.name",
       media: "mainImage",
     },
-    prepare(selection: { author?: string; title?: string; media?: any }) {
+    prepare(selection) {
       const { author } = selection;
-      return { ...selection, subtitle: author && `by ${author}` };
+      return {
+        ...selection,
+        subtitle: author ? `by ${author}` : undefined,
+      };
     },
   },
-});
+};

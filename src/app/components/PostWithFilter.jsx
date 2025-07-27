@@ -1,12 +1,12 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
+import { Alert, Col, Container, Row } from "react-bootstrap";
+import { filterPosts } from "../../studio/sanity/lib/FilterByModelOrYear";
+import { getAllCarModels } from "../../studio/sanity/lib/getCarModal";
 import CarCard from "./Card";
-import { Row, Col, Container, Alert } from "react-bootstrap";
-import FilterModal from "./FilterModal";
 import CategoryTabs from "./CategoryTab";
 import Filter from "./Filter";
-import { filterPosts } from "../../sanity/lib/FilterByModelOrYear";
-import { getAllCarModels } from "../../sanity/lib/getCarModal";
+import FilterModal from "./FilterModal";
 
 export default function PostsWithFilter({ posts, searchTerm,setSearchTerm }) {
   const [filteredResults, setFilteredResults] = useState(posts);

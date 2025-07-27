@@ -104,9 +104,8 @@
 
 
 "use client";
-import { useState, useEffect } from "react";
-import { TbCategory } from "react-icons/tb";
-import { client } from "../../sanity/lib/client";
+import { useEffect, useState } from "react";
+import { client } from "../../studio/sanity/lib/client";
 
 export default function CategoryTabs({ onChange }) {
   const [categories, setCategories] = useState([]);
