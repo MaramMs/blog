@@ -33,7 +33,8 @@ const CarCard = ({
 
   return (
     <Card
-      className={`shadow-sm border border-secondary-subtle rounded-[8px]  ${padding} bg-white`}
+    style={{ paddingTop: padding }}
+      className='shadow-sm border border-secondary-subtle rounded-[8px]  bg-whit'
     >
       {question && (
         <>
@@ -77,7 +78,9 @@ const CarCard = ({
           />
         </div>
       )}
-      <div className={`pt-[${padding}] px-[24] card-body `}>
+      <div 
+      style={{ paddingTop: padding }}
+      className="px-[24] card-body ">
         <h5 className="text-danger fw-bold fs-3">{title}</h5>
         <div className="d-flex flex-col   text-muted gap-[8px] mb-[18px]">
           <div className="d-flex gap-[4px] ">
