@@ -50,8 +50,8 @@ const SwiperCustom = ({swiperData }) => {
         ))}
       </Swiper>
       
-      <div className="swiper-button-prev custom-nav !text-red-600 left-0 !top-1/2 !-translate-y-1/2 absolute z-10" />
-      <div className="swiper-button-next custom-nav !text-red-600 right-0 !top-1/2 !-translate-y-1/2 absolute z-10" />
+      <div className="!swiper-button-prev !custom-nav !text-red-600 !left-0 !top-1/2 !-translate-y-1/2 !absolute !z-10" />
+      <div className="!swiper-button-next !custom-nav !text-red-600 !right-0 !top-1/2 !-translate-y-1/2 !absolute !z-10" />
     </div>
   );
 };
