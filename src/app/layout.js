@@ -13,7 +13,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar">
       <head>
-        {/* ✅ رابط استيراد خط Tajawal من Google Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"
           rel="stylesheet"

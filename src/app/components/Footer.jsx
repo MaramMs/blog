@@ -26,7 +26,7 @@ const Footer = () => {
     { text: "اتصل بنا", href: "/contact" },
   ];
   return (
-    <footer className="flex flex-col">
+    <footer className="!flex !flex-col">
       <div className="bg-[#F8F8F8]">
         <div className="container mx-auto py-[51px] px-4 flex flex-col gap-10 lg:flex-row lg:gap-[88px]">
           {/* Logo */}
@@ -66,9 +66,9 @@ const Footer = () => {
       ))}
     </ul>
 
-          <div className="flex flex-col items-center">
-            <div className="flex flex-col items-center">
-              <div className="flex gap-[10.5px]">
+          <div className="!flex !flex-col items-center">
+            <div className="!flex !flex-col items-center">
+              <div className="!flex gap-[10.5px]">
                 <Image
                   src={compOne}
                   width={76}

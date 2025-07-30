@@ -1,5 +1,7 @@
 'use client';
 import "./globals.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import { useLanguage } from "./contexts/LanguageContext";
 import NavBar from "./components/NavBar";
